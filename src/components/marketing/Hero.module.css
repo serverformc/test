@@ -1,0 +1,190 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(var(--s-10), 6vw, var(--s-20)) clamp(var(--s-16), 9vw, var(--s-24));
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  /* Deliberately uneven: the copy gets the wider track so the headline can run
+     big without the launcher shrinking below a usable width. */
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(var(--s-8), 4vw, var(--s-16));
+}
+
+/* ---- Left column --------------------------------------------------------- */
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.kicker {
+  margin-bottom: var(--s-4);
+}
+
+.title {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+  /* The gradient-clipped word sits on the descender line; a hair of padding
+     stops the clip from shaving the "p" in "supercharged". */
+  padding-bottom: 0.08em;
+}
+
+.sub {
+  margin-top: var(--s-5);
+  max-width: 46ch;
+  color: var(--text);
+  font-size: var(--fs-lg);
+  line-height: 1.6;
+}
+
+.byline {
+  margin-top: var(--s-3);
+  color: var(--text-lo);
+  font-size: var(--fs-sm);
+}
+
+.byline strong {
+  color: var(--em-300);
+  font-weight: 600;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-8);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-8);
+  list-style: none;
+}
+
+.privacy {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-2);
+  margin-top: var(--s-6);
+  max-width: 52ch;
+  color: var(--text-lo);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}
+
+.privacy svg {
+  flex: none;
+  margin-top: 3px;
+  color: var(--em-500);
+}
+
+/* ---- Right column — the live launcher ------------------------------------ */
+.stage {
+  position: relative;
+  perspective: 1600px;
+}
+
+.stageGlow {
+  position: absolute;
+  inset: 6% -6% -10% -6%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(20, 207, 118, 0.3), rgba(23, 200, 220, 0.14) 45%, transparent 72%);
+  filter: blur(56px);
+  pointer-events: none;
+  animation: breathe 9s var(--ease-out) infinite;
+}
+
+.tilt {
+  position: relative;
+  transform: perspective(1200px) rotateY(calc(-8deg + var(--tilt-x, 0deg))) rotateX(calc(1.5deg + var(--tilt-y, 0deg)));
+  transform-style: preserve-3d;
+  transition: transform var(--dur-slow) var(--ease-out);
+  will-change: transform;
+}
+
+.launcherImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg), 0 0 70px -24px rgba(20, 207, 118, 0.65);
+}
+
+/* Straightens when you actually engage with it — the tilt is presentation,
+   not something to fight while clicking tabs. */
+.stage:hover .tilt,
+.stage:focus-within .tilt {
+  transition-duration: 120ms;
+}
+
+.stageNote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  margin-top: var(--s-5);
+  color: var(--text-lo);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.02em;
+}
+
+.liveDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--em-500);
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-12);
+  }
+
+  .stage {
+    perspective: none;
+  }
+
+  .tilt {
+    transform: none;
+  }
+
+  .sub,
+  .privacy {
+    max-width: 62ch;
+  }
+}
+
+@media (max-width: 640px) {
+  .ctas {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The global block only clamps durations, so the tilt and the breathing glow
+     have to be switched off by name. */
+  .tilt {
+    transform: none;
+  }
+
+  .stageGlow {
+    animation: none;
+  }
+
+  .liveDot {
+    animation: none;
+  }
+}

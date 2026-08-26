@@ -1,0 +1,93 @@
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: clamp(var(--s-8), 5vw, var(--s-16));
+}
+
+.side {
+  position: sticky;
+  top: calc(var(--nav-h) + var(--s-8));
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.title {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-snug);
+}
+
+.sub {
+  max-width: 32ch;
+  color: var(--text-lo);
+  line-height: 1.6;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+}
+
+.help {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-full);
+  color: var(--text);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+
+.help:hover {
+  color: var(--em-200);
+  border-color: rgba(20, 207, 118, 0.42);
+  background: rgba(20, 207, 118, 0.07);
+}
+
+.help svg {
+  color: var(--em-400);
+}
+
+/* Keeps long answers from forcing the grid track wider than its share. */
+.list {
+  min-width: 0;
+}
+
+.answer {
+  color: var(--text-hi);
+  line-height: 1.65;
+}
+
+.detail {
+  margin-top: var(--s-2);
+  color: var(--text-lo);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .side {
+    position: static;
+  }
+
+  .sub {
+    max-width: 56ch;
+  }
+
+  .links {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

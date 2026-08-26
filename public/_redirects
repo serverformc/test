@@ -1,0 +1,7 @@
+# Old help page URL -> new /help route. Forced so it wins even if a stale
+# fix.html is still sitting on the host after the drop-in replacement.
+/fix.html    /help    301!
+
+# SPA fallback. Deliberately NOT forced, so real files on disk still win --
+# this is what keeps /dl/*.exe, /dl/*.tar.gz and /dl/*.apk downloadable.
+/*           /index.html   200

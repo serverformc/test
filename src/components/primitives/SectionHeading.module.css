@@ -1,0 +1,23 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  max-width: 62ch;
+}
+
+.center {
+  align-items: center;
+  text-align: center;
+  margin-inline: auto;
+}
+
+.title {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-snug);
+}
+
+.sub {
+  color: var(--text-lo);
+  font-size: var(--fs-lg);
+  line-height: 1.55;
+}

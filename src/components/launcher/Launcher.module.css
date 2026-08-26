@@ -1,0 +1,73 @@
+.frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  background: var(--bg-base);
+  box-shadow: var(--shadow-lg);
+  /* Own stacking context so the hero's glows can never bleed over the UI. */
+  isolation: isolate;
+}
+
+/* Hairline sheen along the top edge — reads as a glass bezel. */
+.frame::before {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* --l-pad and --l-fs are consumed by the shared classes in styles/launcher.css,
+   which is how one set of tab markup renders at two densities. --l-log and
+   --l-console size the two scrolling readouts, which are the only places where
+   the height difference between the variants really matters. */
+.embed {
+  height: 560px;
+  --l-pad: var(--s-4);
+  --l-fs: var(--fs-sm);
+  --l-log: 88px;
+  --l-console: 150px;
+  font-size: var(--fs-sm);
+}
+
+.full {
+  height: min(760px, calc(100dvh - var(--nav-h) - var(--s-20)));
+  min-height: 620px;
+  --l-pad: var(--s-5);
+  --l-fs: var(--fs-base);
+  --l-log: 156px;
+  --l-console: 260px;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  flex: 1;
+  min-height: 0;
+}
+
+.content {
+  padding: var(--l-pad);
+  min-width: 0;
+}
+
+@media (max-width: 560px) {
+  .embed {
+    height: 520px;
+  }
+
+  .full {
+    height: auto;
+    min-height: 560px;
+  }
+
+  .content {
+    padding: var(--s-3);
+  }
+}
