@@ -1,0 +1,168 @@
+.new {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-full);
+  background: var(--bg-inset);
+  color: var(--text-hi);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+}
+
+.new:hover {
+  border-color: rgba(20, 207, 118, 0.45);
+  background: rgba(20, 207, 118, 0.1);
+}
+
+/* ---- Create form -------------------------------------------------------- */
+.form {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr auto;
+  align-items: end;
+  gap: var(--s-3);
+  animation: rise var(--dur) var(--ease-out);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.create {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: var(--s-2) var(--s-4);
+  border-radius: var(--r-sm);
+  background: var(--grad-brand);
+  color: #04120a;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  white-space: nowrap;
+  transition: filter var(--dur-fast) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+}
+
+.create:hover {
+  filter: brightness(1.07);
+  box-shadow: var(--glow-em);
+}
+
+@media (max-width: 720px) {
+  .form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .create {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---- Rows --------------------------------------------------------------- */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.row {
+  padding: 0;
+  gap: 0;
+}
+
+/* The whole row is the selector; the buttons on the right sit outside it. */
+.pick {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  flex: 1;
+  min-width: 0;
+  padding: var(--s-3);
+  text-align: left;
+  border-radius: var(--r-sm);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--r-xs);
+  border: 1px solid var(--line);
+  background: var(--bg-inset);
+  font-size: 17px;
+  line-height: 1;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-hi);
+}
+
+.spec {
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  flex: none;
+  padding-right: var(--s-3);
+}
+
+.playBtn,
+.delBtn {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--r-xs);
+  border: 1px solid var(--line-subtle);
+  color: var(--text-lo);
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+
+.playBtn:hover:not(:disabled) {
+  color: var(--em-300);
+  border-color: rgba(20, 207, 118, 0.45);
+}
+
+.delBtn:hover:not(:disabled) {
+  color: var(--err);
+  border-color: rgba(242, 85, 90, 0.45);
+}
+
+.playBtn:disabled,
+.delBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.note {
+  color: var(--text-faint);
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+}

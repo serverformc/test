@@ -1,0 +1,51 @@
+.shell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+/* Nav + ticker travel together as one fixed block. */
+.top {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  z-index: 100;
+}
+
+.main,
+.mainWithTicker,
+.shell > footer {
+  position: relative;
+  z-index: 1;
+}
+
+.main {
+  flex: 1;
+  padding-top: var(--nav-h);
+}
+
+.mainWithTicker {
+  flex: 1;
+  padding-top: calc(var(--nav-h) + var(--ticker-h));
+}
+
+/* Hidden until it takes focus, then it drops into view. */
+.skip {
+  position: fixed;
+  top: var(--s-2);
+  left: 50%;
+  z-index: 200;
+  padding: var(--s-2) var(--s-4);
+  border-radius: var(--r-full);
+  background: var(--em-500);
+  color: var(--bg-void);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  transform: translate(-50%, -200%);
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.skip:focus-visible {
+  transform: translate(-50%, 0);
+}
