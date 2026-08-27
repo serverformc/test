@@ -1,0 +1,18 @@
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.background :global(canvas) {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+:global([data-theme='light']) .background {
+  opacity: 0.16;
+  mix-blend-mode: multiply;
+}

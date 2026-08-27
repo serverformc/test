@@ -1,0 +1,291 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(var(--s-10), 6vw, var(--s-20)) clamp(var(--s-16), 9vw, var(--s-24));
+  text-align: center;
+}
+
+.signalField {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  width: max(900px, 100vw);
+  height: auto;
+  overflow: visible;
+  pointer-events: none;
+  opacity: 0.42;
+  transform: translate(-38%, -50%);
+}
+
+.signalOrbit,
+.signalArc {
+  fill: none;
+  stroke: rgba(20, 207, 118, 0.28);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.signalOrbit {
+  transform-origin: 840px 360px;
+  animation: signal-orbit 18s ease-in-out infinite;
+}
+
+.signalOrbitWide {
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-dasharray: 2 12;
+  animation-duration: 26s;
+  animation-direction: reverse;
+}
+
+.signalArc {
+  stroke: rgba(23, 200, 220, 0.38);
+  stroke-dasharray: 4 10;
+  stroke-dashoffset: 0;
+  animation: signal-scan 9s ease-in-out infinite;
+}
+
+.signalArcSecond {
+  stroke: rgba(20, 207, 118, 0.2);
+  animation-delay: -4s;
+  animation-direction: reverse;
+}
+
+.signalNode {
+  fill: var(--em-400);
+  filter: drop-shadow(0 0 7px rgba(20, 207, 118, 0.7));
+  animation: signal-pulse 4s ease-in-out infinite;
+}
+
+.signalNodeTwo {
+  fill: var(--cy-400);
+  animation-delay: -1.4s;
+}
+
+.signalNodeThree {
+  animation-delay: -2.7s;
+}
+
+@keyframes signal-orbit {
+  0%,
+  100% {
+    transform: rotate(-2deg) scale(1);
+  }
+  50% {
+    transform: rotate(2deg) scale(1.015);
+  }
+}
+
+@keyframes signal-scan {
+  0%,
+  100% {
+    opacity: 0.25;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    opacity: 0.85;
+    stroke-dashoffset: -80;
+  }
+}
+
+@keyframes signal-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-10);
+}
+
+/* ---- Left column --------------------------------------------------------- */
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+}
+
+.kicker {
+  margin-bottom: var(--s-4);
+}
+
+.title {
+  max-width: 15ch;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+  padding-bottom: 0.08em;
+}
+
+.sub {
+  margin-top: var(--s-5);
+  max-width: 62ch;
+  color: var(--text);
+  font-size: var(--fs-lg);
+  line-height: 1.6;
+}
+
+.byline {
+  margin-top: var(--s-3);
+  color: var(--text-lo);
+  font-size: var(--fs-sm);
+}
+
+.byline strong {
+  color: var(--em-300);
+  font-weight: 600;
+}
+
+.ctas {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin-top: var(--s-8);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-top: var(--s-8);
+  list-style: none;
+}
+
+.privacy {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--s-2);
+  margin-top: var(--s-6);
+  max-width: 52ch;
+  color: var(--text-lo);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}
+
+.privacy svg {
+  flex: none;
+  margin-top: 3px;
+  color: var(--em-500);
+}
+
+/* ---- Right column — the live launcher ------------------------------------ */
+.stage {
+  position: relative;
+  width: min(100%, 940px);
+  perspective: 1600px;
+}
+
+.stageGlow {
+  position: absolute;
+  inset: 6% -6% -10% -6%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(20, 207, 118, 0.16), transparent 68%);
+  filter: blur(42px);
+  pointer-events: none;
+  animation: breathe 9s var(--ease-out) infinite;
+}
+
+.tilt {
+  position: relative;
+  transform: perspective(1200px) rotateY(calc(-8deg + var(--tilt-x, 0deg))) rotateX(calc(1.5deg + var(--tilt-y, 0deg)));
+  transform-style: preserve-3d;
+  transition: transform var(--dur-slow) var(--ease-out);
+  will-change: transform;
+}
+
+.launcherImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  box-shadow: 14px 18px 32px rgba(3, 7, 11, 0.72), -8px -8px 22px rgba(255, 255, 255, 0.025),
+    0 0 48px -28px rgba(20, 207, 118, 0.5);
+}
+
+/* Straightens when you actually engage with it — the tilt is presentation,
+   not something to fight while clicking tabs. */
+.stage:hover .tilt,
+.stage:focus-within .tilt {
+  transition-duration: 120ms;
+}
+
+.stageNote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  margin-top: var(--s-5);
+  color: var(--text-lo);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.02em;
+}
+
+.liveDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--em-500);
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .inner {
+    gap: var(--s-12);
+  }
+
+  .stage {
+    perspective: none;
+  }
+
+  .tilt {
+    transform: none;
+  }
+
+  .sub,
+  .privacy {
+    max-width: 62ch;
+  }
+}
+
+@media (max-width: 640px) {
+  .ctas {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The global block only clamps durations, so the tilt and the breathing glow
+     have to be switched off by name. */
+  .tilt {
+    transform: none;
+  }
+
+  .stageGlow {
+    animation: none;
+  }
+
+  .liveDot {
+    animation: none;
+  }
+
+  .signalField * {
+    animation: none;
+  }
+}

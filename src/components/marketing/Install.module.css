@@ -1,0 +1,104 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s-4);
+  margin-top: var(--s-12);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-6);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: linear-gradient(180deg, var(--bg-raised), var(--bg-base));
+  transition: border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(20, 207, 118, 0.32);
+  box-shadow: var(--shadow), var(--glow-em);
+}
+
+/* macOS isn't here yet and the card should read that way at a glance. */
+.soon {
+  opacity: 0.56;
+}
+
+.soon:hover {
+  transform: none;
+  border-color: var(--line);
+  box-shadow: none;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-2);
+  margin-bottom: var(--s-2);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--bg-inset);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.flag {
+  margin-top: 4px;
+}
+
+.name {
+  font-size: var(--fs-h3);
+}
+
+.meta {
+  color: var(--text-lo);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}
+
+.size {
+  color: var(--text-faint);
+  font-size: var(--fs-xs);
+}
+
+.foot {
+  margin-top: auto;
+  padding-top: var(--s-5);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.footnote {
+  margin-top: var(--s-8);
+  color: var(--text-lo);
+  font-size: var(--fs-sm);
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

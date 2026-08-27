@@ -1,0 +1,53 @@
+.field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.asteroid {
+  position: absolute;
+  top: var(--top);
+  left: var(--left);
+  width: var(--size);
+  height: calc(var(--size) * 0.72);
+  opacity: 0.62;
+  background: var(--em-300);
+  box-shadow: 0 0 12px rgba(52, 224, 138, 0.65);
+  clip-path: polygon(50% 0, 100% 28%, 82% 100%, 18% 86%, 0 38%);
+  animation: asteroid-drift var(--duration) ease-in-out var(--delay) infinite alternate;
+}
+
+.asteroid:nth-child(3n) {
+  background: var(--cy-400);
+  box-shadow: 0 0 9px rgba(62, 224, 238, 0.4);
+}
+
+.asteroid:nth-child(4n) {
+  opacity: 0.4;
+}
+
+@keyframes asteroid-drift {
+  0% {
+    transform: translate3d(-12px, 10px, 0) rotate(-18deg) scale(0.82);
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translate3d(18px, -16px, 0) rotate(28deg) scale(1.14);
+  }
+}
+
+[data-theme='light'] .asteroid {
+  opacity: 0.48;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .asteroid {
+    animation: none;
+  }
+}

@@ -1,0 +1,106 @@
+.band {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(var(--s-16), 8vw, var(--s-24));
+  border-block: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--bg-void), var(--bg-base) 55%, var(--bg-void));
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: clamp(var(--s-8), 5vw, var(--s-16));
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.title {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-snug);
+  padding-bottom: 0.06em;
+}
+
+.sub {
+  max-width: 44ch;
+  color: var(--text);
+  font-size: var(--fs-lg);
+  line-height: 1.6;
+}
+
+.actions {
+  margin-top: var(--s-2);
+}
+
+/* ---- Tab thumbnails ------------------------------------------------------ */
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-3);
+  list-style: none;
+}
+
+.tab {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: 2px var(--s-3);
+  padding: var(--s-4);
+  border: 1px solid var(--line-subtle);
+  border-radius: var(--r-md);
+  background: var(--bg-raised);
+  transition: border-color var(--dur) var(--ease-out), background-color var(--dur) var(--ease-out);
+}
+
+.tab:hover {
+  border-color: rgba(20, 207, 118, 0.34);
+  background: var(--bg-overlay);
+}
+
+.tabIcon {
+  display: grid;
+  place-items: center;
+  grid-row: span 2;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  background: var(--bg-inset);
+  color: var(--em-400);
+}
+
+.tabLabel {
+  color: var(--text-hi);
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.tabBlurb {
+  color: var(--text-lo);
+  font-size: var(--fs-xs);
+  line-height: 1.45;
+}
+
+@media (max-width: 1024px) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sub {
+    max-width: 60ch;
+  }
+}
+
+@media (max-width: 560px) {
+  .tabs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

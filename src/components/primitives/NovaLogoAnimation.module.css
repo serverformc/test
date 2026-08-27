@@ -1,0 +1,251 @@
+.logo {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  flex: none;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--r-xs);
+  background: transparent;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  will-change: transform, opacity, filter;
+}
+
+.base {
+  z-index: 1;
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 1.2s ease, transform 1.2s var(--ease-out);
+}
+
+.start .base {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.mask {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.symbolMask {
+  clip-path: polygon(22% 16%, 79% 16%, 79% 66%, 20% 66%);
+}
+
+.orbitMask {
+  clip-path: polygon(15% 15%, 86% 15%, 86% 68%, 14% 68%);
+}
+
+.starMask {
+  clip-path: polygon(52% 10%, 75% 10%, 75% 40%, 52% 40%);
+}
+
+.novaTextMask {
+  clip-path: polygon(15% 65%, 85% 65%, 85% 81%, 15% 81%);
+}
+
+.clientTextMask {
+  clip-path: polygon(15% 76%, 85% 76%, 85% 96%, 15% 96%);
+}
+
+.orbit,
+.symbol,
+.star,
+.novaText,
+.clientText {
+  opacity: 0;
+}
+
+.orbit {
+  transform: rotate(-2deg) scale(0.98);
+}
+
+.symbol {
+  transform: translateY(18px) scale(0.97);
+}
+
+.star {
+  transform: scale(0.4);
+}
+
+.novaText {
+  transform: translateY(14px);
+}
+
+.clientText {
+  transform: translateY(20px);
+  filter: brightness(0.8);
+}
+
+.start .orbit {
+  animation: orbitReveal 2.2s var(--ease-out) forwards, orbitDrift 10s ease-in-out 2.2s infinite;
+}
+
+.start .symbol {
+  animation: symbolReveal 2s var(--ease-out) 0.45s forwards, symbolBreath 6s ease-in-out 2.5s infinite;
+}
+
+.start .star {
+  animation: starIgnite 1.5s var(--ease-out) 1.4s forwards, starPulse 4.5s ease-in-out 2.9s infinite;
+}
+
+.start .novaText {
+  animation: textReveal 1.4s var(--ease-out) 1.8s forwards;
+}
+
+.start .clientText {
+  animation: clientReveal 1.6s var(--ease-out) 2.2s forwards, clientGlow 5s ease-in-out 3.8s infinite;
+}
+
+.energyPulse {
+  position: absolute;
+  z-index: 5;
+  width: 18%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(190, 245, 255, 0.9), rgba(30, 180, 255, 0.35) 25%, rgba(0, 100, 255, 0.1) 45%, transparent 70%);
+  filter: blur(2px);
+}
+
+.start .energyPulse {
+  animation: energyTravel 8s linear 2.6s infinite;
+}
+
+.lightSweep {
+  position: absolute;
+  z-index: 10;
+  top: 60%;
+  left: -50%;
+  width: 35%;
+  height: 45%;
+  opacity: 0;
+  pointer-events: none;
+  transform: skewX(-25deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.65), rgba(120, 220, 255, 0.3), transparent);
+  mix-blend-mode: screen;
+}
+
+.start .lightSweep {
+  animation: lightSweep 9s ease-in-out 2.5s infinite;
+}
+
+.ambientGlow {
+  position: absolute;
+  z-index: 0;
+  left: 22%;
+  top: 20%;
+  width: 55%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(0, 120, 255, 0.16), rgba(0, 80, 255, 0.04) 40%, transparent 70%);
+  filter: blur(5px);
+  animation: ambientBreath 7s ease-in-out infinite;
+}
+
+@keyframes orbitReveal {
+  0% { opacity: 0; transform: rotate(-4deg) scale(0.94); filter: brightness(0.5); }
+  60% { opacity: 1; filter: brightness(1.25) drop-shadow(0 0 4px rgba(0, 170, 255, 0.4)); }
+  100% { opacity: 1; transform: rotate(0deg) scale(1); filter: brightness(1) drop-shadow(0 0 2px rgba(0, 140, 255, 0.15)); }
+}
+
+@keyframes orbitDrift {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(0.7deg) scale(1.008); }
+}
+
+@keyframes symbolReveal {
+  0% { opacity: 0; transform: translateY(22px) scale(0.94); filter: brightness(0.7); }
+  70% { opacity: 1; filter: brightness(1.15) drop-shadow(0 0 4px rgba(0, 180, 255, 0.3)); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: brightness(1); }
+}
+
+@keyframes symbolBreath {
+  0%, 100% { filter: brightness(1) drop-shadow(0 0 1px rgba(0, 140, 255, 0.1)); }
+  50% { filter: brightness(1.07) drop-shadow(0 0 4px rgba(0, 170, 255, 0.28)); }
+}
+
+@keyframes starIgnite {
+  0% { opacity: 0; transform: scale(0.2); filter: brightness(0.8) blur(1px); }
+  55% { opacity: 1; transform: scale(1.18); filter: brightness(2.2) drop-shadow(0 0 8px rgba(130, 220, 255, 0.8)); }
+  100% { opacity: 1; transform: scale(1); filter: brightness(1.15); }
+}
+
+@keyframes starPulse {
+  0%, 100% { filter: brightness(1.1) drop-shadow(0 0 2px rgba(120, 210, 255, 0.25)); transform: scale(1); }
+  50% { filter: brightness(1.5) drop-shadow(0 0 6px rgba(120, 220, 255, 0.55)); transform: scale(1.025); }
+}
+
+@keyframes textReveal {
+  0% { opacity: 0; transform: translateY(18px); filter: blur(1px) brightness(0.7); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0) brightness(1); }
+}
+
+@keyframes clientReveal {
+  0% { opacity: 0; transform: translateY(25px); filter: brightness(0.5); }
+  100% { opacity: 1; transform: translateY(0); filter: brightness(1); }
+}
+
+@keyframes clientGlow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.12) drop-shadow(0 0 4px rgba(0, 160, 255, 0.25)); }
+}
+
+@keyframes energyTravel {
+  0% { opacity: 0; transform: translate(-120%, 35%) scale(0.4); }
+  18% { opacity: 0.75; }
+  45% { opacity: 0.3; }
+  70% { opacity: 0.7; }
+  88% { opacity: 0; }
+  100% { opacity: 0; transform: translate(620%, -260%) scale(0.8); }
+}
+
+@keyframes lightSweep {
+  0%, 22% { opacity: 0; transform: translateX(0) skewX(-25deg); }
+  30% { opacity: 0.8; }
+  47%, 100% { opacity: 0; transform: translateX(500%) skewX(-25deg); }
+}
+
+@keyframes ambientBreath {
+  0%, 100% { transform: scale(0.95); opacity: 0.6; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo *,
+  .logo::before,
+  .logo::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .base,
+  .orbit,
+  .symbol,
+  .star,
+  .novaText,
+  .clientText {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .energyPulse,
+  .lightSweep {
+    display: none;
+  }
+}
