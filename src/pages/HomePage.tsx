@@ -7,6 +7,7 @@ import { Install } from '../components/marketing/Install'
 import { InstallAppFab } from '../components/marketing/InstallAppFab'
 import { LauncherBand } from '../components/marketing/LauncherBand'
 import { Steps } from '../components/marketing/Steps'
+import { Seo } from '../components/Seo'
 import { Button } from '../components/primitives/Button'
 import styles from './HomePage.module.css'
 
@@ -18,6 +19,11 @@ import styles from './HomePage.module.css'
 export function HomePage() {
   return (
     <>
+      <Seo
+        title="Nova Client - Free Minecraft Launcher, Mods and FPS Boost"
+        description="Nova Client is a free Minecraft launcher created by Froggy, with a website by Vivo. Get Java performance tools, mods, server hosting, 3D skins and Bedrock mobile features."
+        path="/"
+      />
       <Hero />
       <section className={styles.intro} aria-labelledby="intro-title">
         <div className={['container', styles.introGrid].join(' ')}>

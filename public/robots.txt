@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+# Add this after the official domain is published:
+# Sitemap: https://YOUR-OFFICIAL-DOMAIN.example/sitemap.xml

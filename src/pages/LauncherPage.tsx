@@ -3,11 +3,17 @@ import { Link } from 'react-router-dom'
 import { Launcher } from '../components/launcher/Launcher'
 import { Button } from '../components/primitives/Button'
 import { DOWNLOADS, VERSION } from '../data/site'
+import { Seo } from '../components/Seo'
 import styles from './LauncherPage.module.css'
 
 export function LauncherPage() {
   return (
     <div className={styles.page}>
+      <Seo
+        title="Nova Client Launcher - Minecraft Mods and Performance Tools"
+        description="Try the Nova Client Minecraft launcher interface in your browser. Explore mod management, server hosting, skin tools and performance settings."
+        path="/launcher"
+      />
       <div className="glowField" aria-hidden="true" />
 
       <div className={['container', styles.inner].join(' ')}>

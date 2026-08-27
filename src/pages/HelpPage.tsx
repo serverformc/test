@@ -5,11 +5,17 @@ import type { AccordionEntry } from '../components/primitives/Accordion'
 import { GOLDEN_RULES, HELP_SECTIONS, HELP_SUB, HELP_TITLE } from '../data/help'
 import { DISCORD_URL } from '../data/site'
 import { richText } from '../utils/richText'
+import { Seo } from '../components/Seo'
 import styles from './HelpPage.module.css'
 
 export function HelpPage() {
   return (
     <div className={styles.page}>
+      <Seo
+        title="Nova Client Help - Minecraft Launcher Troubleshooting"
+        description="Get help with Nova Client Minecraft launcher installation, mods, performance settings, Java, Bedrock mobile features and common launcher problems."
+        path="/help"
+      />
       <div className="glowField" aria-hidden="true" />
 
       <div className={['container', styles.inner].join(' ')}>
