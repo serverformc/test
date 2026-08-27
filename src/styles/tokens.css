@@ -1,0 +1,162 @@
+/* ==========================================================================
+   Nova Client — design tokens
+   --------------------------------------------------------------------------
+   Base surface is #0a0f16, taken verbatim from the theme_color in the PWA
+   manifest already live at novaclient.bond. Keeping it identical means the
+   browser chrome, the splash screen and the page all agree.
+
+   Emerald is PRIMARY (it matches the green install CTA users already know).
+   Cyan is SECONDARY and does the heavy lifting near the logo, which is
+   electric blue + chrome — cyan is what stops the two from clashing.
+   ========================================================================== */
+
+:root {
+  /* ---- Surfaces ---------------------------------------------------------- */
+  --bg-void: #06090e;
+  --bg-base: #0a0f16;
+  --bg-raised: #0f1620;
+  --bg-overlay: #141d29;
+  --bg-inset: #080c12;
+  --page-gradient: radial-gradient(ellipse 80% 55% at 50% -10%, rgba(13, 48, 54, 0.48), transparent 70%),
+    linear-gradient(135deg, #05080d 0%, #0a1018 48%, #061116 100%);
+
+  /* ---- Hairlines --------------------------------------------------------- */
+  --line-subtle: rgba(255, 255, 255, 0.06);
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.16);
+
+  /* ---- Text -------------------------------------------------------------- */
+  --text-hi: #eaf2ec;
+  --text: #b6c2bd;
+  --text-lo: #7d8a86;
+  --text-faint: #4d5852;
+
+  /* ---- Emerald / primary ------------------------------------------------- */
+  --em-200: #8ef2bd;
+  --em-300: #5eea9f;
+  --em-400: #34e08a;
+  --em-500: #14cf76;
+  --em-600: #06b464;
+  --em-700: #058a4e;
+
+  /* ---- Cyan / secondary -------------------------------------------------- */
+  --cy-300: #7deff7;
+  --cy-400: #3ee0ee;
+  --cy-500: #17c8dc;
+  --cy-600: #0aa3bb;
+
+  /* ---- Chrome — echoes the silver in the logo mark ----------------------- */
+  --chrome-hi: #f2f7fb;
+  --chrome: #c3ced8;
+  --chrome-lo: #8b98a5;
+
+  /* ---- Gradients --------------------------------------------------------- */
+  --grad-brand: linear-gradient(135deg, var(--em-500) 0%, var(--cy-500) 100%);
+  --grad-brand-soft: linear-gradient(135deg, var(--em-600) 0%, var(--cy-600) 100%);
+  --grad-text: linear-gradient(120deg, var(--text-hi) 0%, var(--em-400) 52%, var(--cy-400) 100%);
+  --grad-chrome: linear-gradient(180deg, var(--chrome-hi) 0%, var(--chrome) 45%, var(--chrome-lo) 100%);
+  --grad-line: linear-gradient(90deg, transparent, var(--em-500), var(--cy-500), transparent);
+
+  /* ---- Glow -------------------------------------------------------------- */
+  --glow-em-sm: 0 0 0 1px rgba(20, 207, 118, 0.3), 0 4px 16px -4px rgba(20, 207, 118, 0.35);
+  --glow-em: 0 0 40px -8px rgba(20, 207, 118, 0.45);
+  --glow-em-lg: 0 0 90px -10px rgba(20, 207, 118, 0.4);
+  --glow-cy: 0 0 60px -12px rgba(23, 200, 220, 0.4);
+  --glow-cy-lg: 0 0 110px -14px rgba(23, 200, 220, 0.38);
+
+  /* ---- Elevation --------------------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 24px 64px -16px rgba(0, 0, 0, 0.75);
+
+  /* ---- Status ------------------------------------------------------------ */
+  --ok: #14cf76;
+  --warn: #f0b429;
+  --err: #f2555a;
+  --info: #17c8dc;
+
+  /* ---- Radii ------------------------------------------------------------- */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-full: 999px;
+
+  /* ---- Spacing — 4px ramp ------------------------------------------------ */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  --s-16: 64px;
+  --s-20: 80px;
+  --s-24: 96px;
+  --s-32: 128px;
+
+  /* ---- Typography -------------------------------------------------------- */
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --fs-display: clamp(3rem, 9vw, 6.5rem);
+  --fs-h1: clamp(2.5rem, 6vw, 4.5rem);
+  --fs-h2: clamp(2rem, 4vw, 3rem);
+  --fs-h3: 1.375rem;
+  --fs-lg: 1.125rem;
+  --fs-base: 1rem;
+  --fs-sm: 0.875rem;
+  --fs-xs: 0.75rem;
+
+  --lh-tight: 1.02;
+  --lh-snug: 1.2;
+  --lh-base: 1.6;
+
+  --tracking-tight: -0.03em;
+  --tracking-wide: 0.08em;
+  --tracking-caps: 0.16em;
+
+  /* ---- Motion ------------------------------------------------------------ */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 150ms;
+  --dur: 260ms;
+  --dur-slow: 500ms;
+
+  /* ---- Layout ------------------------------------------------------------ */
+  --maxw: 1200px;
+  --maxw-narrow: 760px;
+  --nav-h: 64px;
+  --ticker-h: 34px;
+}
+
+[data-theme='light'] {
+  --bg-void: #eef3f0;
+  --bg-base: #f7faf8;
+  --bg-raised: #eaf1ed;
+  --bg-overlay: #dfe9e3;
+  --bg-inset: #ffffff;
+  --page-gradient: radial-gradient(ellipse 80% 55% at 50% -10%, rgba(75, 157, 124, 0.2), transparent 70%),
+    linear-gradient(135deg, #cbd8d0 0%, #d9e5de 52%, #c3d2c9 100%);
+
+  --line-subtle: rgba(8, 35, 25, 0.08);
+  --line: rgba(8, 35, 25, 0.14);
+  --line-strong: rgba(8, 35, 25, 0.24);
+
+  --text-hi: #10231b;
+  --text: #3e5a4c;
+  --text-lo: #668073;
+  --text-faint: #91a69a;
+
+  --shadow-sm: 0 1px 2px rgba(28, 72, 51, 0.12);
+  --shadow: 0 8px 24px -8px rgba(28, 72, 51, 0.18);
+  --shadow-lg: 0 24px 64px -16px rgba(28, 72, 51, 0.24);
+
+  --grad-brand: linear-gradient(135deg, var(--em-600) 0%, var(--em-500) 100%);
+  --grad-text: none;
+  --grad-line: linear-gradient(90deg, transparent, var(--em-600), transparent);
+}
